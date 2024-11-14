@@ -31,26 +31,26 @@
 
 1. Clone the Repository / Клонируйте Репозиторий:
 
-```other
+```shell
 git clone https://github.com/yourusername/repositree.git
 cd repositree
 ```
 
-1. Install mermaid-cli container / Установите контейнер mermaid-cli:
+2. Install mermaid-cli container / Установите контейнер mermaid-cli:
 
 ```shell
 docker pull minlag/mermaid-cli
 ```
 
-1. Build the Project / Соберите Проект:
+3. Build the Project / Соберите Проект:
 
-```other
+```shell
 swift build -c release
 ```
 
-1. Ensure `mermaid-docker.sh` is executable / Убедитесь, что `mermaid-docker.sh` Имеет Права на исполнение:
+4. Ensure `mermaid-docker.sh` is executable / Убедитесь, что `mermaid-docker.sh` Имеет Права на исполнение:
 
-```other
+```shell
 chmod +x Scripts/mermaid-docker.sh
 ```
 
@@ -58,7 +58,7 @@ chmod +x Scripts/mermaid-docker.sh
 
 Run the `Repositree` tool with the following arguments / Запустите инструмент `Repositree` со следующими аргументами:
 
-```other
+```shell
 ./Repositree <visualizerPath> <repositoryPath> <outputImagePath> <fileHash>
 ```
 
@@ -77,7 +77,7 @@ Run the `Repositree` tool with the following arguments / Запустите ин
 
 **Example / Пример:**
 
-```other
+```shell
 ./Repositree \
   /path/to/mermaid-docker.sh \
   /path/to/git-repo \
@@ -89,7 +89,7 @@ Run the `Repositree` tool with the following arguments / Запустите ин
 
 Run the test suite to ensure everything is functioning correctly / Запустите набор тестов, чтобы убедиться, что всё работает корректно:
 
-```other
+```shell
 swift test
 ```
 

@@ -16,13 +16,15 @@ class MermaidGenerator {
             commitMap[commit.hash] = commit
         }
 
-        // Generate nodes and edges
+        // First, generate all nodes
         for commit in commits {
             let escapedMessage = escapeMermaidText(commit.message)
             let node = "\(commit.shortHash)[\"\(escapedMessage)\"]"
             lines.append(node)
+        }
 
-            // Add edges to parent commits if they are in the list
+        // Then, generate all edges
+        for commit in commits {
             for parentHash in commit.parents {
                 if commitMap[parentHash] != nil {
                     let parentShortHash = String(parentHash.prefix(7))
@@ -34,6 +36,7 @@ class MermaidGenerator {
 
         return lines.joined(separator: "\n")
     }
+
 
     private func escapeMermaidText(_ text: String) -> String {
         var escaped = text
