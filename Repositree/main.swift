@@ -1,6 +1,5 @@
 import Foundation
 
-// Entry point of the application
 let arguments = CommandLine.arguments
 
 if arguments.count != 5 {

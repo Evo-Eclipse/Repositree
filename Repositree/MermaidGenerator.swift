@@ -18,18 +18,28 @@ class MermaidGenerator {
 
         // Generate nodes and edges
         for commit in commits {
-            let node = "\(commit.shortHash)[\"\(commit.message)\"]"
+            let escapedMessage = escapeMermaidText(commit.message)
+            let node = "\(commit.shortHash)[\"\(escapedMessage)\"]"
             lines.append(node)
 
             // Add edges to parent commits if they are in the list
             for parentHash in commit.parents {
                 if commitMap[parentHash] != nil {
-                    let edge = "\(commit.shortHash) --> \(String(parentHash.prefix(7)))"
+                    let parentShortHash = String(parentHash.prefix(7))
+                    let edge = "\(commit.shortHash) --> \(parentShortHash)"
                     lines.append(edge)
                 }
             }
         }
 
         return lines.joined(separator: "\n")
+    }
+
+    private func escapeMermaidText(_ text: String) -> String {
+        var escaped = text
+        escaped = escaped.replacingOccurrences(of: "\\", with: "\\\\")
+        escaped = escaped.replacingOccurrences(of: "\"", with: "\\\"")
+        escaped = escaped.replacingOccurrences(of: "\n", with: "\\n")
+        return escaped
     }
 }
